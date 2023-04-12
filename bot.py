@@ -13,8 +13,9 @@ intents = discord.Intents.all() #needed for next line
 client = discord.Client(intents=intents) #as of api v2.0 this is required
 tree = app_commands.CommandTree(client) #to hold all commands
 
-openai.organization = "org-Rsl5JS63ShHy62MuJZS2RKtL"
-openai.api_key = os.getenv(OPENAI_API_KEY)
+#openai.organization = "org-Rsl5JS63ShHy62MuJZS2RKtL"
+openai.api_key = OPENAI_API_KEY
+print(OPENAI_API_KEY)
 openai.Model.list()
 
 '''
