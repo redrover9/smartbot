@@ -15,9 +15,7 @@ tree = app_commands.CommandTree(client) #to hold all commands
 
 #openai.organization = "org-Rsl5JS63ShHy62MuJZS2RKtL"
 openai.api_key = OPENAI_API_KEY
-print(OPENAI_API_KEY)
-openai.Model.list()
-
+print(openai.Model.list())
 '''
 @tree.command(name = "commandname", description = "My first application Command", guild=discord.Object(id=957119803397644378)) #Add the guild ids in which the slash command will appear. If it should be in all, remove the argument, but note that it will take some time (up to an hour) to register the command if it's for all guilds.
 async def first_command(interaction):
