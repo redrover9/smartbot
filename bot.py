@@ -1,6 +1,5 @@
 import os
 
-import asyncio
 import discord
 from discord import app_commands
 import openai
@@ -14,12 +13,13 @@ intents = discord.Intents.all() #needed for next line
 client = discord.Client(intents=intents) #as of api v2.0 this is required
 tree = app_commands.CommandTree(client) #to hold all commands
 
-@tree.command(name = "chat", description = "Chat with GPT-4", guild=discord.Object(id=GUILD_ID)) #Add the guild ids in which the slash command will appear. If it should be in all, remove the argument, but note that it will take some time (up to an hour) to register the command if it's for all guilds.
+@tree.command(name="chat", description="Chat with GPT-4", guild=discord.Object(id=GUILD_ID)) #Add the guild ids in which the slash command will appear. If it should be in all, remove the argument, but note that it will take some time (up to an hour) to register the command if it's for all guilds.
+#@app_commands.Parameter(name="prompt", display_name="prompt", required="yes", command="chat")
 async def chat_command(interaction):
     completion = openai.ChatCompletion.create(
     model="gpt-4",
     messages=[
-            {"role": "user", "content": "Hello!"}
+            {"role": "user", "content": "prompt"}
         ]
     )
     response = completion["choices"][0]["message"]["content"]
