@@ -13,10 +13,18 @@ intents = discord.Intents.all() #needed for next line
 client = discord.Client(intents=intents) #as of api v2.0 this is required
 tree = app_commands.CommandTree(client) #to hold all commands
 
-#openai.organization = "org-Rsl5JS63ShHy62MuJZS2RKtL"
+#openai.organization = OPENAI_ORG
 openai.api_key = OPENAI_API_KEY
-print(openai.Model.list())
-'''
+completion = openai.ChatCompletion.create(
+  model="gpt-4",
+  messages=[
+    {"role": "user", "content": "Hello!"}
+  ]
+)
+
+response = completion["choices"][0]["message"]["content"]
+
+
 @tree.command(name = "commandname", description = "My first application Command", guild=discord.Object(id=957119803397644378)) #Add the guild ids in which the slash command will appear. If it should be in all, remove the argument, but note that it will take some time (up to an hour) to register the command if it's for all guilds.
 async def first_command(interaction):
     await interaction.response.send_message("Hello!")
@@ -27,4 +35,3 @@ async def on_ready():
     print("Ready!") #sync once ready
 
 client.run(DISCORD_TOKEN)
-'''
